@@ -8,8 +8,7 @@
     "geolocation"
   ],  
   "browser_action": {
-    "default_icon": "ruter_icon.jpg",
-    "default_title": "Currently showing trams from Sørli to the city center",
+    "default_icon": "ruter_icon.jpg",    
     "default_popup": "popup.html"
   }, 
   "manifest_version": 2
