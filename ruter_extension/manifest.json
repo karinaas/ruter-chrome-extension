@@ -4,6 +4,7 @@
   "permissions": [
     "http://api.trafikanten.no/",
     "http://reis.trafikanten.no/",
+    "http://api-test.trafikanten.no/",
     "geolocation"
   ],  
   "browser_action": {
