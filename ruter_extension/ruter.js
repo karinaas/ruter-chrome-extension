@@ -63,12 +63,22 @@ function createDateString(date) {
 	return date.replace("/Date(", "").replace("+0100)/", "");
 }
 
-//TODO: map between utm and lat lon
 navigator.geolocation.getCurrentPosition(showPosition);
 
-function showPosition(position) {
-  console.log("Latitude: " , position); 
-  console.log("Longitude: " , position.coords);	
+function showPosition(position) { 
+  	var lat = position.coords.latitude; 
+	var long = position.coords.longitude; 
+	var latLng = new LatLng(lat, long); 
+	var utm = latLng.toUTMRef();
+		
+	X = utm.easting.toString().split(".")[0];	
+	Y = utm.northing.toString().split(".")[0];
+
+	console.log("X: ", X);
+	console.log("Y: ", Y);
+
+	//X:  600190
+	//Y:  6639001 
 }
 
 
