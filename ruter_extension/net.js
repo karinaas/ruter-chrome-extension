@@ -1,9 +1,10 @@
 var xhr;
 
-(function run(){	
-	var url = "http://reis.trafikanten.no/reisrest/realtime/getrealtimedata/3010830";
+function run() {	
+	console.log("stop in local storage: ", localStorage.stop)
+	var url = "http://reis.trafikanten.no/reisrest/realtime/getrealtimedata/"+localStorage.stop;
 	ProcessJson(url, processRealtime);
-})();
+};
 
 function ProcessJson(url, onchange) {		
 	xhr = new XMLHttpRequest();
@@ -20,6 +21,6 @@ function processRealtime() {
 
 function processClosestStops() {
 	if (xhr.readyState == 4 && xhr.status == 200) {		 
-		findStops();
+		listStops();
 	} 
 }
