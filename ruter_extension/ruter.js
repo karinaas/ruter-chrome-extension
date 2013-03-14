@@ -1,30 +1,59 @@
-function printTime() {
-	
-	var json = JSON.parse(xhr.responseText);
-	cityDepartures(json);
+function printTime(departures) {
+	var list = {};
+	var index = 6;
+	if (departures.length < 7) {
+		index = departures.length;
+	}	
 
-	var dateSubstr = createDateString(city[0].AimedDepartureTime);
-	var date = new Date();
-	date.setTime(dateSubstr);			
+	for (var i = 0; i < index; i++) {	
 
-	document.getElementById("lineId").innerHTML=+city[0].LineRef + " " +city[0].DestinationDisplay;	
-	count(dateSubstr);
+		var departure = document.createElement("div");
+		departure.setAttribute("id", "departure");
 
-	var nextDateString = createDateString(city[1].AimedDepartureTime);
+		var lineId = document.createElement("span");
+		lineId.setAttribute("id", "lineId");
+
+		var counter = document.createElement("span");
+		counter.setAttribute("id", "counter");
+		
+		departure.appendChild(lineId);
+		departure.appendChild(counter);		
+		
+		list[i] = departure;
+		
+		document.querySelector("#overlay").appendChild(departure);	
+
+		var dateSubstr = createDateString(departures[i].AimedDepartureTime);
+		var date = new Date();
+		date.setTime(dateSubstr);			
+		interval(date, list[i]);	
+
+		list[i].childNodes[0].innerHTML=+departures[i].LineRef + " " +departures[i].DestinationName;		
+	}
+
+	var scroll = document.createElement("div");
+	scroll.setAttribute("id", "scroll");
+	departure.appendChild(scroll);
+
+	var nextDateString = createDateString(departures[7].AimedDepartureTime);
 	var nextDate = new Date();
-	nextDate.setTime(nextDateString);
+	nextDate.setTime(nextDateString);	
 
-	document.getElementById("scroll").innerHTML = city[1].LineRef + " " +city[1].DestinationDisplay + " " +nextDate.getHours()+ ":"+nextDate.getMinutes();	
+	document.getElementById("scroll").innerHTML = departures[7].LineRef + " " +departures[7].DestinationName + " " +nextDate.getHours()+ ":"+nextDate.getMinutes();	
 	
 }
 
-function count(date){			
+function interval(date, element) {
+	var interval = setInterval(function(){count(date, element)}, 1000);	
+}
+
+function count(date, element){			
 	var dateNow = new Date();
 	var amount = date - dateNow.getTime();
 
 	//if less then a minute to go just print "nå"
 	if(amount <= 60000){		
-		document.getElementById("counter").innerHTML="n&aring;"
+		element.childNodes[1].innerHTML="n&aring;"
 	}
 
 	else{	
@@ -38,24 +67,9 @@ function count(date){
 
 		var seconds = Math.floor(amount);//seconds		
 		
-		out += minutes +" "+"min";		
-		document.getElementById("counter").innerHTML=out;
+		out += minutes +" "+"min";	
 
-		setTimeout(function(){count(date)}, 1000);	
-	}
-}
-
-var city = [];
-
-function cityDepartures(data) {
-	for (key in data) {
-		if (data[key].DirectionName == 2) {
-			city.push({
-				AimedDepartureTime : data[key].AimedDepartureTime,
-				DestinationDisplay : data[key].DestinationDisplay,
-				LineRef : data[key].LineRef
-			})
-		}
+		element.childNodes[1].innerHTML=out;						
 	}
 }
 
