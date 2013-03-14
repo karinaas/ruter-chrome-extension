@@ -1,26 +1,18 @@
-var xhr;
-
-function run() {	
-    console.log("stop in local storage: ", localStorage.stop)
-    var url = "http://reis.trafikanten.no/reisrest/realtime/getrealtimedata/"+localStorage.stop;
-    ProcessJson(url, processRealtime);
-};
-
-function ProcessJson(url, onchange) {		
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = onchange;
-    xhr.send(null);
+function xhr() {
+    var xhrObj = new XMLHttpRequest();
+    return xhrObj;
 }
 
-function processRealtime() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        printTime();
-    }
-}
+function send (url, onSuccess) {
+    var xhrRequest = xhr();
 
-function processClosestStops() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        listStops();
-    }
+    xhrRequest.onreadystatechange = function onchange() {
+        if ( xhrRequest.readyState === 4 && xhrRequest.status == 200 ) {            
+            onSuccess(JSON.parse(xhrRequest.responseText));
+        }
+    };
+
+    xhrRequest.open( "GET", url, true);
+    xhrRequest.send(null);
+
 }
