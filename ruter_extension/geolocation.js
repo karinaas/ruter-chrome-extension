@@ -12,7 +12,7 @@ function showPosition(position) {
 	var url = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X="+X+",Y="+Y+")&proposals=4"
 	var testUrl = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X=597982,Y=6643115)&proposals=100";	
 
-	send(testUrl,
+	send(url,
         
         function success(obj) {
         	listStops(obj)
