@@ -10,12 +10,18 @@ function showPosition(position) {
 	var Y = utm.northing.toString().split(".")[0];		
 
 	var url = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X="+X+",Y="+Y+")&proposals=4"
-	ProcessJson(url, processClosestStops);
+	var testUrl = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X=597982,Y=6643115)&proposals=100";	
+
+	send(testUrl,
+        
+        function success(obj) {
+        	listStops(obj)
+		}
+	);
 }
 
-function listStops() {
-	var data = JSON.parse(xhr.responseText);	
-
+function listStops(data) {
+	
 	var select = document.createElement("select");
    	select.setAttribute("name", "stops");
    	select.setAttribute("id", "stops");
@@ -39,7 +45,13 @@ function listStops() {
 		setStopInLocalStorage();	
 		var selectElement = document.getElementById("stops");			
 		selectElement.style.display = "none";
-		run();
+		
+		send("http://reis.trafikanten.no/reisrest/realtime/getrealtimedata/"+localStorage.stop,
+        
+	        function success(obj) {
+	        	printTime(obj)
+			}
+		);
 	};
 }
 
