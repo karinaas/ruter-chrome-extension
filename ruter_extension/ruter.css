@@ -1,51 +1,51 @@
 #overlay {
-	padding: 20px;
-	height: 500px;
-	background-color: black;				
-	width: 500px;	
+    padding: 20px;
+    height: 500px;
+    background-color: black;
+    width: 500px;
 }
 
 #departure,
 #scroll {
-	height: 40px;
-	font-size:20px;
-	font-weight: bold;
-	color:yellow;
+    height: 40px;
+    font-size:20px;
+    font-weight: bold;
+    color:yellow;
 }
 
 #newStop{
-	text-decoration: underline;
-	cursor: pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #stopName,
 #newStop {
-	color: white;
-	font-size: 15px;
-	height: 30px;
-	text-transform: uppercase;
+    color: white;
+    font-size: 15px;
+    height: 30px;
+    text-transform: uppercase;
 }
 
 #lineId {
-	margin-right: 80px;
+    margin-right: 80px;
 }
 
 @-webkit-keyframes slider {
-   0% {
-		right: -200px;    
-   	}
+0% {
+    right: -200px;
+}
 
-    100% {
-    	right: 450px;
-    }
+100% {
+    right: 450px;
+}
 }
 
 #scroll{
-	position: absolute;
-	bottom: 20px;
-	width: 300px;
-	-webkit-animation-name: slider; 
-	-webkit-animation-duration: 16s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
+    position: absolute;
+    bottom: 20px;
+    width: 300px;
+    -webkit-animation-name: slider;
+    -webkit-animation-duration: 16s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
 }
