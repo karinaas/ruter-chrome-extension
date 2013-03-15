@@ -1,9 +1,30 @@
-function printTime(departures) {
-	var list = {};
-	var index = 6;
-	if (departures.length < 7) {
+function printTime(departures) {	
+	var list = [];
+	var index = 10;
+
+	if (departures.length < 11) {
 		index = departures.length;
-	}	
+	}
+
+	var content = document.createElement("div");
+	content.setAttribute("id", "content");	
+	document.querySelector("#overlay").appendChild(content);
+
+	var stop = document.createElement("div");
+	stop.setAttribute("id", "stopName");
+	stop.innerHTML = localStorage.stopName;
+	document.querySelector("#content").appendChild(stop);
+
+	var selectNewStop = document.createElement("div");
+	selectNewStop.setAttribute("id", "newStop");
+	selectNewStop.innerHTML = "Velg nytt stoppested";
+   	
+   	selectNewStop.addEventListener("click", function() {  
+   		document.getElementById("overlay").removeChild(document.getElementById("content"));	
+   		getPosition();				
+   	});
+
+	document.querySelector("#content").appendChild(selectNewStop);		
 
 	for (var i = 0; i < index; i++) {	
 
@@ -21,7 +42,7 @@ function printTime(departures) {
 		
 		list[i] = departure;
 		
-		document.querySelector("#overlay").appendChild(departure);	
+		document.querySelector("#content").appendChild(departure);	
 
 		var dateSubstr = createDateString(departures[i].AimedDepartureTime);
 		var date = new Date();
@@ -29,17 +50,19 @@ function printTime(departures) {
 		interval(date, list[i]);	
 
 		list[i].childNodes[0].innerHTML=+departures[i].LineRef + " " +departures[i].DestinationName;		
+	}	
+
+	if (list.length < departures.length) {
+		var scroll = document.createElement("div");
+		scroll.setAttribute("id", "scroll");
+		document.querySelector("#content").appendChild(scroll);	
+
+		var nextDateString = createDateString(departures[7].AimedDepartureTime);
+		var nextDate = new Date();
+		nextDate.setTime(nextDateString);	
+
+		document.getElementById("scroll").innerHTML = departures[list.length+1].LineRef + " " +departures[list.length+1].DestinationName + " " +nextDate.getHours()+ ":"+nextDate.getMinutes();	
 	}
-
-	var scroll = document.createElement("div");
-	scroll.setAttribute("id", "scroll");
-	departure.appendChild(scroll);
-
-	var nextDateString = createDateString(departures[7].AimedDepartureTime);
-	var nextDate = new Date();
-	nextDate.setTime(nextDateString);	
-
-	document.getElementById("scroll").innerHTML = departures[7].LineRef + " " +departures[7].DestinationName + " " +nextDate.getHours()+ ":"+nextDate.getMinutes();	
 	
 }
 
