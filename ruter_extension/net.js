@@ -3,11 +3,13 @@ function xhr() {
     return xhrObj;
 }
 
-function send (url, onSuccess) {
+function send (url, onSuccess, onProgress) {
     var xhrRequest = xhr();
 
     xhrRequest.onreadystatechange = function onchange() {
-        if (xhrRequest.readyState === 4 && xhrRequest.status == 200) {            
+        onProgress(true);
+        if (xhrRequest.readyState === 4 && xhrRequest.status == 200) {
+            onProgress(false);
             onSuccess(JSON.parse(xhrRequest.responseText));
         }
     };
