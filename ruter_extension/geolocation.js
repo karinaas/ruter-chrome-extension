@@ -4,7 +4,7 @@ function getPosition() {
 
 getPosition();
 
-function showPosition(position) { 
+function showPosition(position) {
     var lat = position.coords.latitude; 
     var long = position.coords.longitude; 
     var latLng = new LatLng(lat, long); 
@@ -13,13 +13,19 @@ function showPosition(position) {
     var X = utm.easting.toString().split(".")[0];   
     var Y = utm.northing.toString().split(".")[0];      
 
-    var url = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X="+X+",Y="+Y+")&proposals=4"
+    var url = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X="+X+",Y="+Y+")&proposals=100"
     var testUrl = "http://api-test.trafikanten.no/Place/GetClosestStopsByCoordinates/?coordinates=(X=597982,Y=6643115)&proposals=100";  
 
     send(url,
         
         function success (obj) {
             listStops(obj)
+        },
+
+        function progress(status) {
+            if (!status) {
+                document.querySelector("#spinner").style.display = "none";
+            }
         }
     );
 }
@@ -55,6 +61,14 @@ function listStops(data) {
         
             function success(obj) {
                 printTime(obj)
+            },
+
+            function progress(status) {
+                if (status) {
+                    document.querySelector("#spinner").style.display = "block";
+                } else {
+                    document.querySelector("#spinner").style.display = "none";
+                }
             }
         );
     };
