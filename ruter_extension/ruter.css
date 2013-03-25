@@ -5,7 +5,7 @@
     width: 500px;
 }
 
-#departure,
+.departure,
 #scroll {
     height: 40px;
     font-size:20px;
@@ -22,12 +22,13 @@
 #newStop {
     color: white;
     font-size: 15px;
-    height: 30px;
     text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
-#lineId {
-    margin-right: 80px;
+.lineId {
+    display: inline-block;
+    width: 300px;
 }
 
 @-webkit-keyframes slider {
