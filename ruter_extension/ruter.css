@@ -1,6 +1,6 @@
 #overlay {
     padding: 20px;
-    height: 500px;
+    height: 540px;
     background-color: black;
     width: 500px;
 }
@@ -16,19 +16,24 @@
 #newStop{
     text-decoration: underline;
     cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+#stopName {
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
 }
 
 #stopName,
 #newStop {
     color: white;
-    font-size: 15px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
 }
 
 .lineId {
     display: inline-block;
-    width: 300px;
+    width: 400px;
 }
 
 @-webkit-keyframes slider {
