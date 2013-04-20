@@ -1,13 +1,13 @@
 function printTime(departures) {
     var deps = {};
     var listOfDepartures = [];
-    var index = 10;
+    var index = 12;
 
-    if (departures.length < 10) {
+    if (departures.length < index) {
         index = departures.length;
     }
 
-    var template = "<div id = 'content'><div id ='stopName' data-date-id = {{generate}}>{{stopName}}</div> <div id = 'newStop'>Velg nytt stoppested</div> {{#departures}} <div class = 'departure'> <span class = 'lineId'>{{LineRef}} {{DestinationName}}</span> <span class = 'counter' data-date-id={{aimedDepartureTime}}>{{{timeUntilDeparture aimedDepartureTime}}}</span> </div> {{/departures}} <div id = 'scroll'> {{scroll}} </div></div>";
+    var template = "<div id = 'content'><div id ='stopName'>{{stopName}}</div> <div id = 'newStop'>Velg nytt stoppested</div> {{#departures}} <div class = 'departure'> <span class = 'lineId'>{{LineRef}} {{DestinationName}}</span> <span class = 'counter' data-date-id={{aimedDepartureTime}}>{{{timeUntilDeparture aimedDepartureTime}}}</span> </div> {{/departures}} <div id = 'scroll'> {{scroll}} </div></div>";
 
     for (var i = 0; i < index; i++) {
         listOfDepartures.push({
@@ -17,14 +17,14 @@ function printTime(departures) {
         });
     }
 
-    deps["stopName"] = localStorage.stopName;
+    deps["stopName"] = "Fra " +localStorage.stopName;
     deps["departures"] = listOfDepartures;
 
     Handlebars.registerHelper('timeUntilDeparture', function(cleanedDate) {
         var date = new Date();
         date.setTime(cleanedDate);
         var timeUntilDeparture = getTimeUntilDeparture(date);
-        if (checkIfMoreThanTenMinutesLeft(timeUntilDeparture)) {
+        if (checkIfMoreThanTwentyMinutesLeft(timeUntilDeparture)) {
             return date.getHours() + ":" + fixMinutes(date.getMinutes());
         } else {
             return (checkIfOneMinuteLeft(timeUntilDeparture) ? "n&aring;" : createMinutes(timeUntilDeparture))
@@ -80,7 +80,7 @@ function count(date, element) {
     checkIfOneMinutePastDeparture(timeUntilDeparture, element);
     if (checkIfOneMinuteLeft(timeUntilDeparture)) {
         element.innerHTML = "n&aring;"
-    } else if (checkIfMoreThanTenMinutesLeft(timeUntilDeparture)) {
+    } else if (checkIfMoreThanTwentyMinutesLeft(timeUntilDeparture)) {
         return thisDate.getHours() + ":" + fixMinutes(thisDate.getMinutes());
     } else {
         element.innerHTML = createMinutes(timeUntilDeparture);
@@ -88,5 +88,5 @@ function count(date, element) {
 }
 
 function createDateString(date) {
-    return date.replace("/Date(", "").replace("+0100)/", "");
+    return date.replace("/Date(", "").replace("+0200)/", "");
 }
