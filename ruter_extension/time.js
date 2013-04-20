@@ -9,8 +9,8 @@ function checkIfOneMinuteLeft(timeUntilDeparture) {
     }
 }
 
-function checkIfMoreThanTenMinutesLeft(timeUntilDeparture) {
-    if (timeUntilDeparture >= 600000) {
+function checkIfMoreThanTwentyMinutesLeft(timeUntilDeparture) {
+    if (timeUntilDeparture >= 1200000) {
         return true;
     }
 }
