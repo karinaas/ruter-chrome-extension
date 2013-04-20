@@ -4,21 +4,15 @@ function getTimeUntilDeparture(date) {
 }
 
 function checkIfOneMinuteLeft(timeUntilDeparture) {
-    if (timeUntilDeparture <= 60000) {
-        return true;
-    }
+    return timeUntilDeparture <= 60000;
 }
 
 function checkIfMoreThanTwentyMinutesLeft(timeUntilDeparture) {
-    if (timeUntilDeparture >= 1200000) {
-        return true;
-    }
+    return timeUntilDeparture >= 1200000;
 }
 
-function checkIfOneMinutePastDeparture(timeUntilDeparture, element) {
-    if (timeUntilDeparture <= -60000) {
-        return true;
-    }
+function checkIfOneMinutePastDeparture(timeUntilDeparture) {
+    return timeUntilDeparture <= -60000;
 }
 
 function createMinutes(amount) {
@@ -28,9 +22,9 @@ function createMinutes(amount) {
     amount = amount % 3600;
 
     var minutes = Math.floor(amount / 60);//minutes
-    amount = amount % 60;
+    //amount = amount % 60;
 
-    var seconds = Math.floor(amount);//seconds
+    //var seconds = Math.floor(amount);//seconds
 
     out += minutes + " " + "min";
     return out;

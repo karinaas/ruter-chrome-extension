@@ -1,6 +1,5 @@
 function xhr() {
-    var xhrObj = new XMLHttpRequest();
-    return xhrObj;
+    return new XMLHttpRequest();
 }
 
 function send (url, onSuccess, onProgress) {
