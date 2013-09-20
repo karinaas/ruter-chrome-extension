@@ -7,7 +7,7 @@ function printTime(departures) {
         index = departures.length;
     }
 
-    var template = "<div id = 'content'><div id ='stopName'>{{stopName}}</div> <div id = 'newStop'>Velg nytt stoppested</div> {{#departures}} <div class = 'departure'> <span class = 'lineId'>{{LineRef}} {{DestinationName}}</span> <span class = 'counter' data-date-id={{aimedDepartureTime}}>{{{timeUntilDeparture aimedDepartureTime}}}</span> </div> {{/departures}} <div id = 'scroll'> {{scroll}} </div></div>";
+    var template = "<div id = 'content'><div id ='stopName'>{{stopName}}</div> <div id = 'newStop'>Velg nytt stoppested</div> {{#departures}} <div class = 'departure'> <span class = 'lineId'>{{LineRef}} {{DestinationName}}</span> <span class = 'counter' data-date-id={{aimedDepartureTime}}>{{{timeUntilDeparture aimedDepartureTime}}}</span> </div> {{/departures}}</div>";
 
     for (var i = 0; i < index; i++) {
         listOfDepartures.push({
