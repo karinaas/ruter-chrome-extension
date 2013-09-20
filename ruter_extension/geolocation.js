@@ -35,11 +35,10 @@ function listStops(data) {
     var select = document.createElement("select");
     select.setAttribute("name", "stops");
     select.setAttribute("id", "stops");
-    select.style.width = "200px";       
 
     var option;
     option = document.createElement("option");
-    option.innerHTML = "VELG STOPPESTED";
+    option.innerHTML = "Velg stoppested";
     select.appendChild(option);
 
     for (key in data) {
