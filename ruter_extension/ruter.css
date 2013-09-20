@@ -1,16 +1,34 @@
+select {
+   background: #000000;
+   padding: 5px;
+   font-size: 16px;
+   height: 50px;
+   overflow: hidden;
+   //background: url(new_arrow.png) no-repeat right #ddd;
+   border: 1px solid #ccc;
+   color: yellow;
+   position: absolute;
+   top: 40%;
+   left: 10%;
+}
+
 #overlay {
     padding: 20px;
     height: 540px;
-    background-color: black;
-    width: 500px;
+    background-image: url("sorli.png");
+    width: 460px;
+    overflow-y:auto;
 }
 
 .departure,
 #scroll {
-    height: 40px;
+    height: 25px;
+    margin-bottom:10px;
     font-size:20px;
     font-weight: bold;
     color:yellow;
+    padding: 5px;
+    background-color: #000000;
 }
 
 #newStop{
@@ -18,32 +36,33 @@
     cursor: pointer;
     font-size: 15px;
     margin-bottom: 20px;
+    font-weight:bold;
 }
 
 #stopName {
     font-size: 20px;
     margin-bottom: 5px;
     text-transform: uppercase;
-}
-
-#stopName,
-#newStop {
-    color: white;
+    font-weight:bold;
 }
 
 .lineId {
     display: inline-block;
-    width: 400px;
+    float: left;
 }
 
-@-webkit-keyframes slider {
-0% {
-    right: -200px;
+.counter {
+    float: right;
 }
 
-100% {
-    right: 450px;
-}
+/*@-webkit-keyframes slider {
+    0% {
+        right: -200px;
+    }
+
+    100% {
+        right: 450px;
+    }
 }
 
 #scroll{
@@ -54,4 +73,4 @@
     -webkit-animation-duration: 16s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
-}
+}*/
