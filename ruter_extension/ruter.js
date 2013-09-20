@@ -1,7 +1,7 @@
 function printTime(departures) {
     var deps = {};
     var listOfDepartures = [];
-    var index = 12;
+    var index = 30;
 
     if (departures.length < index) {
         index = departures.length;
@@ -30,15 +30,6 @@ function printTime(departures) {
             return (checkIfOneMinuteLeft(timeUntilDeparture) ? "n&aring;" : createMinutes(timeUntilDeparture))
         }
     });
-
-    /*if (listOfDepartures.length < departures.length) {
-        Handlebars.registerHelper('scroll', function(date) {
-            var cleanedDate = createDateString(departures[listOfDepartures.length+1].AimedDepartureTime);
-            var date = new Date();
-            date.setTime(cleanedDate);
-            return departures[listOfDepartures.length+1].LineRef + " " + departures[listOfDepartures.length+1].DestinationName + " " + date.getHours() + ":" + date.getMinutes();
-        });
-    }*/
 
     var compiledTemplate = Handlebars.compile(template);
     var html = compiledTemplate(deps);
