@@ -35,6 +35,7 @@ select {
     color:yellow;
     padding: 5px;
     background-color: #000000;
+    border-radius: 5px;
 }
 
 #newStop{
