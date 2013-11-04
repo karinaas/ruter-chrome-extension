@@ -79,5 +79,5 @@ function count(date, element) {
 }
 
 function createDateString(date) {
-    return date.replace("/Date(", "").replace("+0200)/", "");
+    return date.replace("/Date(", "").replace("+0100)/", "");
 }
